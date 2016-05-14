@@ -139,7 +139,6 @@ def run_suite2(Sudoku, printout = False):
     test3 = Sudoku(VALID_FULL)
     fifth_row =  list(test3.rows[5])
     test3.rows[5] = [0,0,0,0,0,0,0,0,0]
-    #test3.update()
     suite.run_test(test3.is_full(), False, "trial() Test #1")
     trial3 = test3.trial()
     suite.run_test(trial3.is_full(), True, "trial() Test #2")
@@ -151,7 +150,6 @@ def run_suite2(Sudoku, printout = False):
     test4.rows[6] = [3,4,5,6,7,8,0,0,0]
     test4.rows[7] = [6,7,8,9,1,2,0,0,0]
     test4.rows[8] = [9,1,2,3,4,5,0,0,0]
-    #test4.update()
     suite.run_test(test4.is_full(), False, "trial() Test #5")
     suite.run_test(test4.boxes[8], [0,0,0,0,0,0,0,0,0], "trial() Test #6")
     trial4 = test4.trial()
@@ -163,7 +161,6 @@ def run_suite2(Sudoku, printout = False):
     test5.rows[6] = [0,0,0,0,0,0,0,0,0]
     test5.rows[7] = [0,0,0,0,0,0,0,0,0]
     test5.rows[8] = [0,0,0,0,0,0,0,0,0]
-    #test5.update()
     trial5 = test5.trial()
     suite.run_test(trial5.is_full(), trial5.is_valid(), "trial() Test #9")
     suite.run_test(trial5.is_solved(), trial5.boxes[8].count(0) == 0, "trial() Test #10")
@@ -175,7 +172,6 @@ def run_suite2(Sudoku, printout = False):
 
     test7 = Sudoku(INVALID_PARTIAL4)
     test7.rows[0][1] = 0
-    #test7.update()
     trial7 = test7.trial()
     suite.run_test(trial7.is_full(), trial7.is_valid(), "trial() Test #13")
     suite.run_test(trial7.is_solved(),trial7.boxes[8].count(0)== 0, "trial() Test #14")
@@ -239,13 +235,11 @@ def run_suite3(Sudoku, printout = False):
     test2.rows[6] = [3,4,5,6,7,8,0,0,0]
     test2.rows[7] = [6,7,8,9,1,2,0,0,0]
     test2.rows[8] = [9,1,2,3,4,5,0,0,0]
-    #test2.update()
     trial2= test2.solve()
     suite.run_test(trial2.is_solved(), True, "solve() Test #2:")
 
     test3 = Sudoku(INVALID_PARTIAL4)
     test3.rows[0][1] = 0
-    #test3.update()
     trial3 = test3.solve()
     suite.run_test(trial3.is_full(), trial3.is_valid(), "solve() Test #3")
 

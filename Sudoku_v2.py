@@ -15,11 +15,8 @@ class Sudoku():
         Option to pass in initial state as list of rows.
         """
         self.rows = [[0]*9 for dummy_idx in range(9)]
-        #self.cols = [[0]*9 for dummy_idx in range(9)]
-        #self.boxes = [[0]*9 for dummy_idx in range(9)]
         if setup:
             self.set_board(setup)
-            #self.update()
 
     def __str__(self):
         board = ""
@@ -35,7 +32,6 @@ class Sudoku():
 
     @property
     def cols(self):
-    #def update_cols(self):
         """ Function to get list of columns."""
         cols = [[],[],[],[],[],[],[],[],[]]
         for row in self.rows:
@@ -45,7 +41,6 @@ class Sudoku():
 
     @property
     def boxes(self):
-    #def update_boxes(self):
         """ Function to get list of boxes."""
         boxes = [[],[],[],[],[],[],[],[],[]]
         for row in range(9):
@@ -58,11 +53,19 @@ class Sudoku():
 
     ##################################################
     # Functions for maintaining the board state.
+    def set_board(self, setup_dict):
+        """
+        Takes a setup dictionary of coordinates and
+        values and loads them on to the given board.
+        Assertion error if tile is already full.
+        """
+        for coord in setup_dict:
+            assert self.rows[coord[0]][coord[1]] == 0 , "Tile " +str(coord) +" already full."
+            self.rows[coord[0]][coord[1]] = setup_dict[coord]
 
     def set_pos(self, row, col, num):
         """ Sets the given number in that row and column."""
         self.rows[row][col] = num
-        #self.update()
 
     def is_valid(self):
         """
@@ -73,7 +76,6 @@ class Sudoku():
             if len(set(group)) == 9:
                 continue
             elif len(set(group)) != len(group)- group.count(0) + 1:
-                #print "Invalid row/col/box: ", group           # for debugging
                 return False
         if not self.is_full():
             if not self.next_empty():
@@ -100,38 +102,13 @@ class Sudoku():
         return new_board
 
     #######################################################
-    # Helper functions to facilitate testing
-    #
-    # def update(self):
-    #     """ Function to update columns and rows after changing a tile."""
-    #     self.cols = self.update_cols()
-    #     self.boxes = self.update_boxes()
-    #
-    def set_board(self, setup_dict):
-        """
-        Takes a setup dictionary of coordinates and
-        values and loads them on to the given board.
-        Assertion error if tile is already full.
-        """
-        for coord in setup_dict:
-            assert self.rows[coord[0]][coord[1]] == 0 , "Tile " +str(coord) +" already full."
-            self.rows[coord[0]][coord[1]] = setup_dict[coord]
-    #     self.update()
-
-    #######################################################
     # Helper functions for solution process
-
     def get_moves(self, row, col):
         """
         Function to generate a list of valid entries for that cell.
         """
         box = 3 * (row // 3) + col//3
         bad_num = set(self.rows[row]+self.cols[col]+self.boxes[box])
-        #print "Checking cell:", row, col                        # for debugging
-        #print "Row contains:", set(self.rows[row])              # for debugging
-        #print "Col contins:", set(self.cols[col])               # for debugging
-        #print "Box ", box, " contains: ", set(self.boxes[box])  # for debugging
-        #print "bad num: ", bad_num                              # for debugging
         options = set([1,2,3,4,5,6,7,8,9])
         return list(options.difference(bad_num))
 
@@ -141,7 +118,6 @@ class Sudoku():
         the least number of possible moves.
         """
         assert (not self.is_full()), "Full board, no possible moves."
-
         cell = None
         moves = [0,0,0,0,0,0,0,0,0,0,0]
         for row in range(9):
@@ -165,26 +141,16 @@ class Sudoku():
             board, cell tried, remaining options
         """
         trial = self.clone()
-        #print "ORIGINAL BOARD: "                        # for debugging
-        #print trial                                     # for debugging
         while trial.is_valid() and not trial.is_full():
-            #print "Next Move: ", trial.next_empty()     # for debugging
             cell, moves = trial.next_empty()
             trial.set_pos(cell[0], cell[1], moves.pop(0))
             if len(moves) > 0:
                 stored_game_states.push((trial.clone(), cell, moves))
-                #print ">>>> ARCHIVED: board, ", cell, moves # for debugging
-        #print ""                                        # for debugging
-        #print "RETURNED BOARD:"                         # for debugging
-        #print trial                                     # for debugging
-        #print ">>> Board Valid ? ", trial.is_valid()    # for debugging
-        #print ">>> Board Full? ", trial.is_full()       # for debugging
         return trial
 
 
     ##################################################################
     # Main Solution functions (DEPTH FIRST SEARCH???)
-
     def solve(self):
         """
         Function to solve a sudoku puzzle using DFS (I think).
@@ -192,10 +158,7 @@ class Sudoku():
         """
         storage = Stack()
         attempt = self.trial(storage)
-        #count = 0                           # for debugging
         while not attempt.is_solved():
-            #count += 1                      # for debugging
-            #print "Attempt #", count, ": ",len(storage)," item(s) in storage"
             if len(storage) == 0:
                 print "This sudoku puzzle is not solvable."
                 return self
