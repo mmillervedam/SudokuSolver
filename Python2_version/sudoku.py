@@ -3,7 +3,7 @@ Sudoku Class Module.
 """
 
 from StackClass import Stack # for Python2
-import sudoku_testsuite as testsuite # for Python2
+#import sudoku_testsuite as testsuite # for Python2
 from collections import deque
 
 # Create Sudoku board class
@@ -172,8 +172,10 @@ class Sudoku():
         self = attempt
         return self
 
-
+##################################################################
 # Calls to test suite
-testsuite.run_suite1(Sudoku, printout = False)
-testsuite.run_suite2(Sudoku, printout = False)
-testsuite.run_suite3(Sudoku, printout = False)
+#testsuite.run_suite1(Sudoku, printout = False)
+#testsuite.run_suite2(Sudoku, printout = False)
+#testsuite.run_suite3(Sudoku, printout = False)
+
+##################################################################

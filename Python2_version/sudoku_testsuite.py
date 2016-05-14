@@ -1,7 +1,7 @@
 """
 Test Suite for Sudoku.
 """
-import simpletest
+import poc_simpletest
 
 # Global Test Cases
 INVALID_PARTIAL1 = {(0,0):1, (0,1):1}
@@ -42,7 +42,7 @@ def run_suite1(Sudoku, printout = False):
     """
 
     # create a TestSuite object
-    suite = simpletest.TestSuite()
+    suite = poc_simpletest.TestSuite()
 
     # Testing initializer, set_board and update functions
     suite.run_test(Sudoku().rows[0], [0,0,0,0,0,0,0,0,0], "Init Test #1:")
@@ -92,29 +92,29 @@ def run_suite1(Sudoku, printout = False):
 
     # optional console printout
     if printout:
-        print("")
-        print("===========================================")
-        print("Testing __init__(including set_board and update fxns) ")
-        print("-------------------------------------------")
-        print("UNSEEDED BOARD:")
-        print(Sudoku())
-        print("SEEDED BOARD:")
-        print(test1)
-        print("First Row: ", test1.rows[0])
-        print("First Col: ", test1.cols[0])
-        print("Second Box: ", test1.boxes[1])
-        print("")
-        print("===========================================")
-        print("Testing is_valid(), is_full() and is_solved() ")
-        print("-------------------------------------------")
+        print ""
+        print "==========================================="
+        print "Testing __init__(including set_board and update fxns) "
+        print "-------------------------------------------"
+        print "UNSEEDED BOARD:"
+        print Sudoku()
+        print "SEEDED BOARD:"
+        print test1
+        print "First Row: ", test1.rows[0]
+        print "First Col: ", test1.cols[0]
+        print "Second Box: ", test1.boxes[1]
+        print ""
+        print "==========================================="
+        print "Testing is_valid(), is_full() and is_solved() "
+        print "-------------------------------------------"
         for setup in [INVALID_PARTIAL4, VALID_PARTIAL, INVALID_FULL, VALID_FULL]:
             board = Sudoku(setup)
-            print("BOARD:")
-            print(board)
-            print("Valid Board? ", board.is_valid())
-            print("Full Board? ", board.is_full())
-            print("Solved Board? ", board.is_solved())
-            print("-------------------------------------------")
+            print "BOARD:"
+            print board
+            print "Valid Board? ", board.is_valid()
+            print "Full Board? ", board.is_full()
+            print "Solved Board? ", board.is_solved()
+            print "-------------------------------------------"
 
 def run_suite2(Sudoku, printout = False):
     """
@@ -122,7 +122,7 @@ def run_suite2(Sudoku, printout = False):
     """
 
     # create a TestSuite object
-    suite = simpletest.TestSuite()
+    suite = poc_simpletest.TestSuite()
 
     # Testing get_moves() and next_empty()
     test1 = Sudoku(VALID_PARTIAL)
@@ -182,42 +182,42 @@ def run_suite2(Sudoku, printout = False):
 
     # optional console printout
     if printout:
-        print("")
-        print("===========================================")
-        print("Testing get_moves() and next_empty")
-        print("-------------------------------------------")
-        print("VALID PARTIAL BOARD:")
-        print(test1)
-        print("Moves for (2,2) ", test1.get_moves(2,2))
-        print("Moves for (3,0): ", test1.get_moves(3,0))
-        print("")
-        print("===========================================")
-        print("Testing trial()")
-        print("-------------------------------------------")
-        print("ORIGINAL BOARD:")
-        print(test3)
-        print("Trial Results: ")
-        print(trial3)
-        print("Valid Board? ", trial3.is_valid())
-        print("Full Board? ", trial3.is_full())
-        print("Solved Board? ", trial3.is_solved())
-        print("-------------------------------------------")
-        print("ORIGINAL BOARD:")
-        print(test5)
-        print("Trial Results: ")
-        print(trial5)
-        print("Valid Board? ", trial5.is_valid())
-        print("Full Board? ", trial5.is_full())
-        print("Solved Board? ", trial5.is_solved())
-        print("-------------------------------------------")
-        print("ORIGINAL BOARD:")
-        print(test7)
-        print("Trial Results: ")
-        print(trial7)
-        print("Valid Board? ", trial7.is_valid())
-        print("Full Board? ", trial7.is_full())
-        print("Solved Board? ", trial7.is_solved())
-        print("-------------------------------------------")
+        print ""
+        print "==========================================="
+        print "Testing get_moves() and next_empty"
+        print "-------------------------------------------"
+        print "VALID PARTIAL BOARD:"
+        print test1
+        print "Moves for (2,2) ", test1.get_moves(2,2)
+        print "Moves for (3,0): ", test1.get_moves(3,0)
+        print ""
+        print "==========================================="
+        print "Testing trial()"
+        print "-------------------------------------------"
+        print "ORIGINAL BOARD:"
+        print test3
+        print "Trial Results: "
+        print trial3
+        print "Valid Board? ", trial3.is_valid()
+        print "Full Board? ", trial3.is_full()
+        print "Solved Board? ", trial3.is_solved()
+        print "-------------------------------------------"
+        print "ORIGINAL BOARD:"
+        print test5
+        print "Trial Results: "
+        print trial5
+        print "Valid Board? ", trial5.is_valid()
+        print "Full Board? ", trial5.is_full()
+        print "Solved Board? ", trial5.is_solved()
+        print "-------------------------------------------"
+        print "ORIGINAL BOARD:"
+        print test7
+        print "Trial Results: "
+        print trial7
+        print "Valid Board? ", trial7.is_valid()
+        print "Full Board? ", trial7.is_full()
+        print "Solved Board? ", trial7.is_solved()
+        print "-------------------------------------------"
 
 def run_suite3(Sudoku, printout = False):
     """
@@ -225,7 +225,7 @@ def run_suite3(Sudoku, printout = False):
     """
 
     # create a TestSuite object
-    suite = simpletest.TestSuite()
+    suite = poc_simpletest.TestSuite()
 
     # Testing get_moves() and next_empty()
     test1 = Sudoku(VALID_FULL)
@@ -253,31 +253,31 @@ def run_suite3(Sudoku, printout = False):
 
     # optional console printout
     if printout:
-        print("")
-        print("===========================================")
-        print("Testing solve()")
-        print("-------------------------------------------")
-        print("ORIGINAL BOARD:")
-        print(test2)
-        print("Solve Results: ")
-        print(trial2)
-        print("Valid Board? ", trial2.is_valid())
-        print("Full Board? ", trial2.is_full())
-        print("Solved Board? ", trial2.is_solved())
-        print("")
-        print("-------------------------------------------")
-        print("ORIGINAL BOARD:")
-        print(test3)
-        print("Solve Results: ")
-        print(trial3)
-        print("Valid Board? ", trial3.is_valid())
-        print("Full Board? ", trial3.is_full())
-        print("Solved Board? ", trial3.is_solved())
-        print("-------------------------------------------")
-        print("ORIGINAL BOARD:")
-        print(test4)
-        print("Solve Results: ")
-        print(trial4)
-        print("Valid Board? ", trial4.is_valid())
-        print("Full Board? ", trial4.is_full())
-        print("Solved Board? ", trial4.is_solved())
+        print ""
+        print "==========================================="
+        print "Testing solve()"
+        print "-------------------------------------------"
+        print "ORIGINAL BOARD:"
+        print test2
+        print "Solve Results: "
+        print trial2
+        print "Valid Board? ", trial2.is_valid()
+        print "Full Board? ", trial2.is_full()
+        print "Solved Board? ", trial2.is_solved()
+        print ""
+        print "-------------------------------------------"
+        print "ORIGINAL BOARD:"
+        print test3
+        print "Solve Results: "
+        print trial3
+        print "Valid Board? ", trial3.is_valid()
+        print "Full Board? ", trial3.is_full()
+        print "Solved Board? ", trial3.is_solved()
+        print "-------------------------------------------"
+        print "ORIGINAL BOARD:"
+        print test4
+        print "Solve Results: "
+        print trial4
+        print "Valid Board? ", trial4.is_valid()
+        print "Full Board? ", trial4.is_full()
+        print "Solved Board? ", trial4.is_solved()
